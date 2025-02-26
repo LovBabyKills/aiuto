@@ -1,0 +1,7 @@
+tty: true
+    e' come scrivere -t nel docker command
+    serve per far rimanere il terminale in run
+
+tty e' un comando linux che ritorna il filename del terminale
+quando si avvia un terminale, si spegne in automatico se non diamo
+    un comando per farlo continuare, si spegne in automatico

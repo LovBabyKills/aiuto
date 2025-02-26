@@ -1,0 +1,6 @@
+Installare composer sul pc, con php
+
+creare la cartella laravel
+ composer create-project --prefer-dist laravel/laravel="8.*" nome_del_progetto
+
+prendere i file dentro la cartella laravel e metterli nella cartella con dockerfile e dockercompose

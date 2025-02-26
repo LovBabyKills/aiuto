@@ -1,0 +1,35 @@
+services:
+
+  app:
+    image: rockylinux:8
+    container_name: laravel_app
+    restart: unless-stopped   # il container si riavvia sempre tranne quando viene stoppato docker stop laravel_app
+    volumes:
+      - ./laravelapp:/var/www/html       #. cartella corrente, var/www/html la cartella dentro il container deve viene montato il dockerfile
+    working_dir: /var/www/html # la cartella nel container in cui vengono eseguiti i comandi
+    #tty: true           # docker run -t per far restare il terminale aperto
+    #stdin_open: true    # docker run -i, utile per programm interattivi, non in questo caso credo
+    ports:
+      - "8080:80"
+    depends_on:
+      - mariadb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: chiamate
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql  
+
+volumes:
+  mariadb_data: {} 
